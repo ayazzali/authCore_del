@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27703.2047
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AuthCore", "AuthCore\AuthCore.csproj", "{8D95C1A2-677B-4A9F-A044-92F3EA3F5AF6}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8D95C1A2-677B-4A9F-A044-92F3EA3F5AF6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8D95C1A2-677B-4A9F-A044-92F3EA3F5AF6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8D95C1A2-677B-4A9F-A044-92F3EA3F5AF6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8D95C1A2-677B-4A9F-A044-92F3EA3F5AF6}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {068BEC11-470B-42CC-B600-AA3930A0FC0D}
+	EndGlobalSection
+EndGlobal
