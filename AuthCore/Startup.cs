@@ -7,6 +7,10 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
+using AuthCore.Models;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.EntityFrameworkCore;
+
 namespace AuthCore
 {
     public class Startup
@@ -21,6 +25,11 @@ namespace AuthCore
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            string conn = Configuration.GetConnectionString("DefaultConnection");
+            services.AddDbContext<Core.DB>(opts => opts.UseSqlServer(conn));
+
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+                .AddCookie(opts => opts.LoginPath = new Microsoft.AspNetCore.Http.PathString("/Account/Login"));
             services.AddMvc();
         }
 
@@ -38,6 +47,8 @@ namespace AuthCore
             }
 
             app.UseStaticFiles();
+
+            app.UseAuthentication();
 
             app.UseMvc(routes =>
             {
