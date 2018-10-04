@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using AuthCore.Models;
 using Microsoft.AspNetCore.Authorization;
+using Newtonsoft;
+using System.Security.Claims;
 
 namespace AuthCore.Controllers
 {
@@ -20,7 +22,9 @@ namespace AuthCore.Controllers
         public IActionResult About()
         {
             ViewData["Message"] = "Your application description page.";
-
+            var d=User.FindFirst(_ => _.Type == ClaimsIdentity.DefaultRoleClaimType).Value;
+            var g = User.Claims.Where(_ => _.Type == ClaimsIdentity.DefaultRoleClaimType).FirstOrDefault()?.Value;
+            return Content(User.Identity.Name + " " + g + " " + d);
             return View();
         }
 

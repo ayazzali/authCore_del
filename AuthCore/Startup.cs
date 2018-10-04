@@ -46,6 +46,8 @@ namespace AuthCore
                 app.UseExceptionHandler("/Home/Error");
             }
 
+            // app.Run(async (_) =>{ _.Response.Cookies.Append("mykey", "1111111szvzsdvszdvzs111111111"); return; });
+            //app.Run(async hc => { hc.Response.; });
             app.UseStaticFiles();
 
             app.UseAuthentication();
