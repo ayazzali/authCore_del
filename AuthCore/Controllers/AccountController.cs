@@ -74,7 +74,9 @@ namespace AuthCore.Controllers
             var claims = new List<Claim>()
             {
                 new Claim(ClaimsIdentity.DefaultNameClaimType,userName),
-                new Claim(ClaimsIdentity.DefaultRoleClaimType,"myRole")
+                new Claim(ClaimsIdentity.DefaultRoleClaimType,"myRole"),
+                new Claim("ppp","qqq"),
+                new Claim("company","Microsoft")
             };
             ///
             await HttpContext.SignInAsync(

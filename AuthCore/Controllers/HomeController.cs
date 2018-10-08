@@ -18,7 +18,10 @@ namespace AuthCore.Controllers
             return View();
         }
 
-        [Authorize]
+        [Authorize("OnlyForMicrosoft_Name")]
+        [Authorize("pname")]
+        // [Authorize("pname1")]
+
         public IActionResult About()
         {
             ViewData["Message"] = "Your application description page.";

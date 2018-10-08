@@ -28,6 +28,16 @@ namespace AuthCore
             string conn = Configuration.GetConnectionString("DefaultConnection");
             services.AddDbContext<Core.DB>(opts => opts.UseSqlServer(conn));
 
+services.AddAuthorization(_ => {
+    _.AddPolicy("OnlyForMicrosoft_Name", p => p.RequireClaim("company", "Microsoft"));
+    _.AddPolicy("pname", p => p.RequireClaim("ppp", "qqq","ууу"));
+});
+            //"company",policy=>policy.RequireClaim("company", "Microsoft"))));
+            //services.AddAuthorization(opts => {
+            //    opts.AddPolicy("OnlyForMicrosoft", policy => {
+            //        policy.RequireClaim("company", "Microsoft");
+            //    });
+            //});
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
                 .AddCookie(opts => opts.LoginPath = new Microsoft.AspNetCore.Http.PathString("/Account/Login"));
             services.AddMvc();
