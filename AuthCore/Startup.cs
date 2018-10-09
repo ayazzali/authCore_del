@@ -10,6 +10,8 @@ using Microsoft.Extensions.DependencyInjection;
 using AuthCore.Models;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.DataProtection;
+using System.IO;
 
 namespace AuthCore
 {
@@ -28,18 +30,21 @@ namespace AuthCore
             string conn = Configuration.GetConnectionString("DefaultConnection");
             services.AddDbContext<Core.DB>(opts => opts.UseSqlServer(conn));
 
-services.AddAuthorization(_ => {
-    _.AddPolicy("OnlyForMicrosoft_Name", p => p.RequireClaim("company", "Microsoft"));
-    _.AddPolicy("pname", p => p.RequireClaim("ppp", "qqq","ууу"));
-});
-            //"company",policy=>policy.RequireClaim("company", "Microsoft"))));
-            //services.AddAuthorization(opts => {
-            //    opts.AddPolicy("OnlyForMicrosoft", policy => {
-            //        policy.RequireClaim("company", "Microsoft");
-            //    });
-            //});
+            services.AddAuthorization(_ =>
+            {
+                _.AddPolicy("OnlyForMicrosoft_Name", p => p.RequireClaim("company", "Microsoft"));
+                _.AddPolicy("pname", p => p.RequireClaim("ppp", "qqq", "ууу"));
+            });
+
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
-                .AddCookie(opts => opts.LoginPath = new Microsoft.AspNetCore.Http.PathString("/Account/Login"));
+                .AddCookie(opts => {
+                    opts.LoginPath = new Microsoft.AspNetCore.Http.PathString("/Account/Login")
+                    ;// opts.Cookie.Name = "MyCoolie";
+                    // opts.DataProtectionProvider = DataProtectionProvider.Create(new DirectoryInfo(@"C:\temp-keys\"));
+
+                });
+            //services.AddDataProtection().PersistKeysToFileSystem(
+            //new DirectoryInfo(@"C:\temp-keys\"));
             services.AddMvc();
         }
 

@@ -1,11 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Security.Claims;
+using System.Text;
 using System.Threading.Tasks;
 using AuthCore.Core;
 using AuthCore.Models;
 using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.DataProtection;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AuthCore.Controllers
@@ -88,5 +92,31 @@ namespace AuthCore.Controllers
                         //ClaimsIdentity.DefaultRoleClaimType
                 )));
         }
-        }
+
+        //public IActionResult DecryptCookie()
+        //{
+        //    var provider = DataProtectionProvider.Create(new DirectoryInfo(@"C:\temp-keys\"));
+
+
+        //    //Get the encrypted cookie value
+        //    string cookieValue = HttpContext.Request.Cookies[".AspNetCore.Cookies"];//[".AspNetCore.Cookies"];
+
+        //    //Get a data protector to use with either approach
+        //    var dataProtector = provider.CreateProtector(typeof(AuthenticationMiddleware).FullName, "MyCookie"/*CookieAuthenticationDefaults.AuthenticationScheme*/, "v2");
+
+
+        //    //Get the decrypted cookie as plain text
+        //    UTF8Encoding specialUtf8Encoding = new UTF8Encoding(encoderShouldEmitUTF8Identifier: false, throwOnInvalidBytes: true);
+        //    byte[] protectedBytes = Base64UrlTextEncoder.Decode(cookieValue);
+        //    byte[] plainBytes = dataProtector.Unprotect(protectedBytes);
+        //    string plainText = specialUtf8Encoding.GetString(plainBytes);
+
+
+        //    //Get the decrypted cookie as a Authentication Ticket
+        //    TicketDataFormat ticketDataFormat = new TicketDataFormat(dataProtector);
+        //    AuthenticationTicket ticket = ticketDataFormat.Unprotect(cookieValue);
+
+        //    return View();
+        //}
+    }
     }
